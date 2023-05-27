@@ -4,7 +4,7 @@ import cors from 'cors';
 import ProductModel from './models/Product.js';
 import OrderModel from './models/Order.js';
 
-mongoose.connect('mongodb+srv://admin:1q2w3e@cluster0.estzqnq.mongodb.net/delivery?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('DB ok'))
     .catch((err) => console.log('DB error', err));
 
@@ -70,7 +70,7 @@ app.get('/orders', async (req, res) => {
   }
 })
 
-app.listen(8181, (err) => {
+app.listen(process.env.PORT || 8181, (err) => {
     if (err) {
         return console.log(err);
     }
